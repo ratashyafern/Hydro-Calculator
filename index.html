@@ -6,7 +6,7 @@
     <title>SDA Online Calculator | Sudin SDA JS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
         
         :root { 
             --primary: #0f172a; 
@@ -21,55 +21,89 @@
             color: var(--primary);
         }
 
-        /* HEADER */
+        /* HEADER - Bold & Modern */
         #main-header { 
-            background: var(--primary); color: white; padding: 80px 20px; 
-            text-align: center; border-bottom: 8px solid var(--accent); 
+            background: var(--primary); 
+            color: white; 
+            padding: 110px 20px; 
+            text-align: center; 
+            border-bottom: 8px solid var(--accent); 
             position: relative;
-            overflow: hidden;
-        }
-        
-        /* Dekorasi Header */
-        #main-header::before {
-            content: ""; position: absolute; top: -50%; left: -10%; width: 40%; height: 200%;
-            background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
-            transform: rotate(-15deg);
         }
 
-        .header-big { font-size: 3rem; font-weight: 800; font-style: italic; margin: 0; line-height: 1.1; }
-        .header-small { font-size: 1rem; color: var(--accent); font-weight: 600; margin-top: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        .header-big { 
+            font-size: 3.8rem; 
+            font-weight: 800; 
+            margin: 0; 
+            line-height: 1;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+        
+        .header-small { 
+            font-size: 1.1rem; 
+            color: var(--accent); 
+            font-weight: 700; 
+            margin-top: 15px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+        }
 
         /* MENU CARDS */
         .menu-container { 
-            max-width: 1100px; margin: -50px auto 50px auto; 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; padding: 0 20px;
+            max-width: 1100px; margin: -60px auto 50px auto; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; padding: 0 20px;
         }
         
         .menu-card {
-            background: white; border-radius: 28px; padding: 35px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); cursor: pointer; 
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column;
-            position: relative;
+            background: white;
+            border-radius: 35px; 
+            padding: 45px 40px; 
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05); 
+            cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden;
         }
         
+        /* Glow & Lift Effect on Hover */
         .menu-card:hover { 
-            transform: translateY(-12px); 
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15); 
+            transform: translateY(-15px); 
+            box-shadow: 0 40px 70px rgba(15, 23, 42, 0.12), 0 0 20px rgba(245, 158, 11, 0.1); 
             border-color: var(--accent); 
         }
 
-        .icon-circle { 
-            width: 60px; height: 60px; background: var(--primary); 
-            border-radius: 18px; display: flex; align-items: center; 
-            justify-content: center; font-size: 1.8rem; margin-bottom: 25px; color: var(--accent);
+        /* Ikon dengan Animasi Floating */
+        .icon-box { 
+            width: 75px; height: 75px; 
+            background: var(--primary); 
+            border-radius: 24px; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 2.2rem; margin-bottom: 30px; 
+            color: var(--accent);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
 
         .btn-open { 
-            background: var(--primary); color: white; padding: 14px; 
-            border-radius: 12px; font-weight: 800; text-align: center; 
-            font-size: 0.8rem; letter-spacing: 1px; margin-top: auto;
+            background: var(--primary); 
+            color: white; 
+            padding: 16px; 
+            border-radius: 16px; 
+            font-weight: 800; 
+            text-align: center; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px; 
+            margin-top: auto;
             transition: 0.3s;
         }
 
@@ -78,11 +112,11 @@
             color: var(--primary);
         }
 
-        /* STATUS BADGE */
-        .badge { 
-            background: #f1f5f9; color: #64748b; padding: 4px 12px; 
-            border-radius: 100px; font-size: 10px; font-weight: 800; 
-            width: fit-content; margin-bottom: 12px; border: 1px solid #e2e8f0;
+        .badge-status { 
+            font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            padding: 6px 16px; border-radius: 100px;
+            margin-bottom: 15px; width: fit-content;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -90,39 +124,37 @@
 
     <header id="main-header">
         <h1 class="header-big">SDA Online Calculator</h1>
-        <p class="header-small uppercase">Seksi Perencanaan Suku Dinas Sumber Daya Air Jakarta Selatan</p>
+        <p class="header-small text-slate-400">Seksi Perencanaan Suku Dinas Sumber Daya Air Jakarta Selatan</p>
     </header>
 
     <div class="menu-container">
-        
-        <div class="menu-card" onclick="alert('Membuka Database Stasiun Hujan...')">
-            <div class="badge text-blue-600 border-blue-100 bg-blue-50">DATABASE READY</div>
-            <div class="icon-circle">📂</div>
-            <h2 class="font-black text-xl mb-2 text-slate-800">Base Data</h2>
-            <p class="text-sm text-slate-500 mb-6 leading-relaxed">Pusat informasi stasiun hujan, input data historis, dan koordinat teknis wilayah Jaksel.</p>
-            <div class="btn-open">BUKA DATABASE →</div>
+        <div class="menu-card" onclick="alert('Masuk ke Database Stasiun & Dimensi Saluran...')">
+            <div class="badge-status bg-blue-100 text-blue-600 border border-blue-200">Central Repository</div>
+            <div class="icon-box">📂</div>
+            <h2 class="font-black text-2xl mb-3 tracking-tight">HYDRO-DATABASE</h2>
+            <p class="text-sm text-slate-500 mb-8 leading-relaxed">Penyimpanan data curah hujan historis 22 stasiun serta katalog dimensi standar U-Ditch & Box Culvert.</p>
+            <div class="btn-open">KELOLA DATA →</div>
         </div>
 
-        <div class="menu-card" onclick="alert('Membuka Kalkulator Analisis...')">
-            <div class="badge text-emerald-600 border-emerald-100 bg-emerald-50">CALCULATOR ACTIVE</div>
-            <div class="icon-circle">📊</div>
-            <h2 class="font-black text-xl mb-2 text-slate-800">Rainfall & Saluran</h2>
-            <p class="text-sm text-slate-500 mb-6 leading-relaxed">Analisis hidrologi (Gumbel & LP3) serta verifikasi kapasitas dimensi saluran drainase.</p>
-            <div class="btn-open">MULAI ANALISIS →</div>
+        <div class="menu-card" onclick="alert('Masuk ke Kalkulator Verifikasi...')">
+            <div class="badge-status bg-emerald-100 text-emerald-600 border border-emerald-200">Analysis Engine</div>
+            <div class="icon-box">⚖️</div>
+            <h2 class="font-black text-2xl mb-3 tracking-tight">DESIGN-VERIFIER</h2>
+            <p class="text-sm text-slate-500 mb-8 leading-relaxed">Modul otomatisasi perhitungan debit banjir rencana dan verifikasi kapasitas kecukupan dimensi saluran.</p>
+            <div class="btn-open">MULAI VERIFIKASI →</div>
         </div>
 
-        <div class="menu-card" style="opacity: 0.7; cursor: default;">
-            <div class="badge">UNDER DEVELOPMENT</div>
-            <div class="icon-circle" style="background: #cbd5e1; color: white;">🚀</div>
-            <h2 class="font-black text-xl mb-2 text-slate-400">Next Features</h2>
-            <p class="text-sm text-slate-400 mb-6 leading-relaxed">Integrasi perhitungan pompa stasioner, pintu air, dan volume retensi waduk/embung.</p>
+        <div class="menu-card" style="opacity: 0.6; cursor: default;">
+            <div class="badge-status bg-slate-100 text-slate-400 border border-slate-200">Expansion Slot</div>
+            <div class="icon-box" style="background: #e2e8f0; color: #94a3b8; box-shadow: none; animation: none;">🚀</div>
+            <h2 class="font-black text-2xl mb-3 text-slate-400 tracking-tight">COMING SOON</h2>
+            <p class="text-sm text-slate-400 mb-8 leading-relaxed">Pengembangan modul analisis kapasitas pompa, pintu air, dan pemetaan catchment area otomatis.</p>
             <div class="btn-open bg-slate-100 text-slate-400">LOCKED</div>
         </div>
-
     </div>
 
-    <footer class="text-center py-10 text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em]">
-        &copy; 2024 Suku Dinas Sumber Daya Air Jakarta Selatan
+    <footer class="text-center py-12 text-slate-400 text-[11px] font-bold uppercase tracking-[0.4em]">
+        &copy; 2026 Suku Dinas Sumber Daya Air Jakarta Selatan
     </footer>
 
 </body>
